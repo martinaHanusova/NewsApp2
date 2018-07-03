@@ -7,4 +7,5 @@
     <dimen name="date_padding">5dp</dimen>
     <dimen name="title_padding">10dp</dimen>
     <dimen name="title_font_size">18sp</dimen>
+    <dimen name="message_padding">10dp</dimen>
 </resources>

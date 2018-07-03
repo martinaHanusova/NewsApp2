@@ -22,13 +22,11 @@ import java.util.List;
 
 public class ArticleActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>> {
 
-    public static final String LOG_TAG = ArticleActivity.class.getSimpleName();
     private static final String URL_REQUEST = "http://content.guardianapis.com/search?section=technology&show-fields=thumbnail&show-tags=contributor&api-key=93fdb283-039e-4d6f-880b-826e2b09337b";
     private static final int ARTICLE_LOADER_ID = 1;
     private ArticleAdapter articleAdapter;
     private ProgressBar progressBar;
     private TextView messageView;
-    private ImageView backgroundImage;
 
 
     @Override
@@ -37,9 +35,9 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
         setContentView(R.layout.activity_article);
 
         ListView listView = findViewById(R.id.list);
-        //progressBar = findViewById(R.id.loading);
-       // messageView = findViewById(R.id.message_view);
-        //listView.setEmptyView(messageView);
+        progressBar = findViewById(R.id.loading);
+        messageView = findViewById(R.id.message_view);
+        listView.setEmptyView(messageView);
 
         articleAdapter = new ArticleAdapter(this, new ArrayList<Article>());
         listView.setAdapter(articleAdapter);
@@ -49,8 +47,8 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
         if (networkInfo != null && networkInfo.isConnected()) {
             getLoaderManager().initLoader(ARTICLE_LOADER_ID, null, this);
         } else {
-            //progressBar.setVisibility(View.GONE);
-           // messageView.setText(R.string.no_internet);
+              progressBar.setVisibility(View.GONE);
+              messageView.setText(R.string.no_internet);
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,8 +70,8 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<List<Article>> loader, List<Article> data) {
-        //messageView.setText(R.string.no_articles);
-       // progressBar.setVisibility(View.GONE);
+        messageView.setText(R.string.no_articles);
+        progressBar.setVisibility(View.GONE);
         articleAdapter.clear();
 
         if (data != null && !data.isEmpty()) {
