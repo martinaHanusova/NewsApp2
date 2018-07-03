@@ -23,7 +23,7 @@ import java.util.List;
 public class ArticleActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>> {
 
     public static final String LOG_TAG = ArticleActivity.class.getSimpleName();
-    private static final String URL_REQUEST = "http://content.guardianapis.com/search?section=technology&show-fields=all&show-tags=contributor&api-key=93fdb283-039e-4d6f-880b-826e2b09337b";
+    private static final String URL_REQUEST = "http://content.guardianapis.com/search?section=technology&show-fields=thumbnail&show-tags=contributor&api-key=93fdb283-039e-4d6f-880b-826e2b09337b";
     private static final int ARTICLE_LOADER_ID = 1;
     private ArticleAdapter articleAdapter;
     private ProgressBar progressBar;

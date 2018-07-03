@@ -13,16 +13,14 @@ import java.util.TimeZone;
 public class Article {
 
     private String title;
-    private String trailText;
     private String url;
     private String imageUrl;
     private String publishedDate;
     private String authorName;
     private String authorSurname;
 
-    public Article(String title, String trailText, String url, String imageUrl, String publishedDate, String authorName, String authorSurname) {
+    public Article(String title, String url, String imageUrl, String publishedDate, String authorName, String authorSurname) {
         this.title = title;
-        this.trailText = trailText;
         this.url = url;
         this.imageUrl = imageUrl;
         this.publishedDate = publishedDate;
@@ -32,10 +30,6 @@ public class Article {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getTrailText() {
-         return Html.fromHtml(trailText).toString();
     }
 
     public String getUrl() {
@@ -72,7 +66,7 @@ public class Article {
 
     public String getFormatedDate() {
         Date date = fromISO8601UTC(publishedDate);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM. yyyy");
         return dateFormat.format(date);
     }
 
@@ -80,7 +74,6 @@ public class Article {
     public String toString() {
         return "Article{" +
                 "title='" + title + '\'' +
-                ", trailText='" + trailText + '\'' +
                 ", url='" + url + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", publishedDate='" + publishedDate + '\'' +

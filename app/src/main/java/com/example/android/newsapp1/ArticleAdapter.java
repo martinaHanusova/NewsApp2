@@ -52,9 +52,6 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         TextView articleTitle = convertView.findViewById(R.id.article_title);
         articleTitle.setText(currentArticle.getTitle());
 
-        TextView articleDescription = convertView.findViewById(R.id.article_description);
-        articleDescription.setText(currentArticle.getTrailText());
-
         TextView articleDate = convertView.findViewById(R.id.article_date);
         articleDate.setText(currentArticle.getFormatedDate());
 

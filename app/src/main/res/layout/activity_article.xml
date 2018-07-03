@@ -2,11 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
     <ListView
+        android:layout_margin="10dp"
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="@dimen/padding_8dp"
-        android:layout_marginBottom="@dimen/padding_8dp"/>
+        android:divider="@color/colorPrimaryDark"
+        android:dividerHeight="4dp"/>
 </RelativeLayout>
