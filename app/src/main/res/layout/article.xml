@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/padding_8dp"
+    android:paddingTop="@dimen/padding_8dp"
+    android:paddingLeft="@dimen/padding_16dp"
+    android:paddingRight="@dimen/padding_16dp">
+    <ImageView
+        android:id="@+id/article_image"
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
+        android:layout_marginRight="@dimen/padding_16dp"
+        tools:src="@drawable/ic_launcher_background"/>
+    <TextView
+        android:id="@+id/article_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/article_image"
+        tools:text="Martina Adamusova"/>
+    <TextView
+        android:id="@+id/article_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        tools:text="12.3.2018"/>
+    <TextView
+        android:id="@+id/article_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/article_image"
+        android:layout_below="@+id/article_date"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        tools:text="Dukovi do programu prezidenta nic není, řekl Nově Zeman"/>
+    <TextView
+        android:id="@+id/article_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/article_image"
+        android:layout_below="@+id/article_title"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="Kardinálu Dominiku Dukovi není vůbec nic do toho, jaký program má prezident republiky, řekl v úterý televizi Nova prezident Miloš Zeman. Reagoval tak na sobotní Dukovo kázání u příležitosti repatriace kardinála Josefa Berana. Duka v něm upozornil, že Zeman by…"/>
+</RelativeLayout>
