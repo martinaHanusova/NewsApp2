@@ -20,6 +20,8 @@ import java.util.ArrayList;
 public final class QueryUtils {
 
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private static final int READ_TIMEOUT = 10000;
+    private static final int CONNECT_TIMEOUT = 15000;
 
     private static URL createURL(String stringURL) {
         URL url = null;
@@ -42,12 +44,12 @@ public final class QueryUtils {
 
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(READ_TIMEOUT);
+            urlConnection.setConnectTimeout(CONNECT_TIMEOUT);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {

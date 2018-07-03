@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="180dp">
+    android:layout_height="@dimen/image_height">
     <ImageView
         android:id="@+id/article_image"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="@dimen/image_height"
         android:scaleType="centerCrop"
         android:alpha="0.6"
         tools:src="@drawable/zeman2"/>
@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/article_title"
-        android:paddingLeft="10dp"
+        android:paddingLeft="@dimen/author_padding_left"
         android:textColor="@color/colorWhite"
         tools:text="By Martina Adamusova"/>
     <TextView
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:padding="5dp"
+        android:padding="@dimen/date_padding"
         android:textColor="@color/colorWhite"
         tools:text="12.3.2018"/>
     <TextView
@@ -32,12 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp"
+        android:paddingLeft="@dimen/title_padding"
+        android:paddingBottom="@dimen/title_padding"
         android:maxLines="2"
         android:ellipsize="end"
         android:textStyle="bold"
         android:textColor="@color/colorWhite"
-        android:textSize="18dp"
+        android:textSize="@dimen/title_font_size"
         tools:text="Dukovi do programu prezidenta nic není, řekl Nově Zeman"/>
 </RelativeLayout>

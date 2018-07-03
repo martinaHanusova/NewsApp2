@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
     <ListView
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/listview_margin"
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:divider="@color/colorPrimaryDark"
-        android:dividerHeight="4dp"/>
+        android:dividerHeight="@dimen/listview_devider_height"/>
 </RelativeLayout>
