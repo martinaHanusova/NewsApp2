@@ -5,22 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/image_height">
     <ImageView
-        android:id="@+id/article_image"
+        android:id="@+id/article_image_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_height"
         android:scaleType="centerCrop"
         android:alpha="0.6"
         tools:src="@drawable/zeman2"/>
     <TextView
-        android:id="@+id/article_author"
+        android:id="@+id/article_section_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/article_title"
+        android:paddingLeft="@dimen/section_padding"
+        android:paddingTop="@dimen/section_padding"
+        android:textColor="@color/colorWhite"
+        android:textAllCaps="true"
+        tools:text="Technology"/>
+    <TextView
+        android:id="@+id/article_author_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/article_title_text_view"
         android:paddingLeft="@dimen/author_padding_left"
         android:textColor="@color/colorWhite"
         tools:text="By Martina Adamusova"/>
     <TextView
-        android:id="@+id/article_date"
+        android:id="@+id/article_date_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -28,7 +37,7 @@
         android:textColor="@color/colorWhite"
         tools:text="12.3.2018"/>
     <TextView
-        android:id="@+id/article_title"
+        android:id="@+id/article_title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

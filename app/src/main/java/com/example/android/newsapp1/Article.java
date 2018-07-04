@@ -18,14 +18,16 @@ public class Article {
     private String publishedDate;
     private String authorName;
     private String authorSurname;
+    private String section;
 
-    public Article(String title, String url, String imageUrl, String publishedDate, String authorName, String authorSurname) {
+    public Article(String title, String url, String imageUrl, String publishedDate, String authorName, String authorSurname, String section) {
         this.title = title;
         this.url = url;
         this.imageUrl = imageUrl;
         this.publishedDate = publishedDate;
         this.authorName = authorName;
         this.authorSurname = authorSurname;
+        this.section = section;
     }
 
     public String getTitle() {
@@ -49,6 +51,10 @@ public class Article {
             return StringUtils.capitalize(authorName) + " " + StringUtils.capitalize(authorSurname);
         }
         return null;
+    }
+
+    public String getSection() {
+        return section;
     }
 
     private Date fromISO8601UTC(String dateStr) {

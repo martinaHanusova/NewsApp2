@@ -97,6 +97,7 @@ public final class QueryUtils {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject article = jsonArray.optJSONObject(i);
                 String title = article.optString("webTitle");
+                String section = article.optString("sectionName");
                 String url = article.optString("webUrl");
                 String publicationDate = article.getString("webPublicationDate");
                 JSONObject fields = article.optJSONObject("fields");;
@@ -109,7 +110,7 @@ public final class QueryUtils {
                     authorName = author.getString("firstName");
                     authorSurname = author.getString("lastName");
                 }
-                articles.add(new Article(title, url, imageUrl, publicationDate, authorName, authorSurname));
+                articles.add(new Article(title, url, imageUrl, publicationDate, authorName, authorSurname, section));
                 Log.d(LOG_TAG, articles.get(i).toString());
             }
             return articles;

@@ -1,7 +1,6 @@
 package com.example.android.newsapp1;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
@@ -31,46 +29,34 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.article, parent, false);
         }
 
-        ImageView articleImage = convertView.findViewById(R.id.article_image);
+        ImageView articleImageView = convertView.findViewById(R.id.article_image_view);
         String imageUrl = currentArticle.getImageUrl();
 
         if (imageUrl != null) {
-            Picasso.get().load(imageUrl).into(articleImage);
+            Picasso.get().load(imageUrl).into(articleImageView);
         } else {
-            articleImage.setVisibility(View.GONE);
+            articleImageView.setVisibility(View.GONE);
         }
 
-        TextView articleAuthor = convertView.findViewById(R.id.article_author);
+        TextView sectionTextView = convertView.findViewById(R.id.article_section_text_view);
+        sectionTextView.setText(currentArticle.getSection());
+
+        TextView articleAuthorTextView = convertView.findViewById(R.id.article_author_text_view);
         String author = currentArticle.getAuthor();
 
         if (author != null) {
-            articleAuthor.setText(author);
+            articleAuthorTextView.setText(author);
         } else {
-            articleAuthor.setVisibility(View.GONE);
+            articleAuthorTextView.setVisibility(View.GONE);
         }
 
-        TextView articleTitle = convertView.findViewById(R.id.article_title);
-        articleTitle.setText(currentArticle.getTitle());
+        TextView articleTitleTextView = convertView.findViewById(R.id.article_title_text_view);
+        articleTitleTextView.setText(currentArticle.getTitle());
 
-        TextView articleDate = convertView.findViewById(R.id.article_date);
-        articleDate.setText(currentArticle.getFormatedDate());
+        TextView articleDateTextView = convertView.findViewById(R.id.article_date_text_view);
+        articleDateTextView.setText(currentArticle.getFormatedDate());
 
         return convertView;
 
-    }
-
-    public class CropSquareTransformation implements Transformation {
-        @Override public Bitmap transform(Bitmap source) {
-            int size = Math.min(source.getWidth(), source.getHeight());
-            int x = (source.getWidth() - size) / 2;
-            int y = (source.getHeight() - size) / 2;
-            Bitmap result = Bitmap.createBitmap(source, x, y, size, size);
-            if (result != source) {
-                source.recycle();
-            }
-            return result;
-        }
-
-        @Override public String key() { return "square()"; }
     }
 }
