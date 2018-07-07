@@ -4,11 +4,16 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -22,7 +27,7 @@ import java.util.List;
 
 public class ArticleActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>> {
 
-    private static final String URL_REQUEST = "http://content.guardianapis.com/search?section=technology&show-fields=thumbnail&show-tags=contributor&api-key=93fdb283-039e-4d6f-880b-826e2b09337b";
+    private static final String URL_REQUEST = "http://content.guardianapis.com/search?";
     private static final int ARTICLE_LOADER_ID = 1;
     private ArticleAdapter articleAdapter;
     private ProgressBar progressBar;
@@ -65,7 +70,23 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public Loader<List<Article>> onCreateLoader(int id, Bundle args) {
-        return new ArticleLoader(this, URL_REQUEST);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String numberOfNews = sharedPreferences.getString(getString(R.string.settings_number_of_news_key), getString(R.string.settings_number_of_news_default));
+        String orderBy = sharedPreferences.getString(getString(R.string.settings_order_by_key), getString(R.string.settings_order_by_default));
+
+        Uri baseUri = Uri.parse(URL_REQUEST);
+
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("section", "technology");
+        uriBuilder.appendQueryParameter("show-fields", "thumbnail");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("page-size", numberOfNews);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("api-key", "93fdb283-039e-4d6f-880b-826e2b09337b");
+        Log.i("ArticleActivity", uriBuilder.toString());
+        return new ArticleLoader(this, uriBuilder.toString());
     }
 
     @Override
@@ -84,4 +105,20 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
         articleAdapter.clear();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

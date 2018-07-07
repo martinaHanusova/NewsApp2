@@ -35,7 +35,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         if (imageUrl != null) {
             Picasso.get().load(imageUrl).into(articleImageView);
         } else {
-            articleImageView.setVisibility(View.GONE);
+            Picasso.get().load(R.drawable.default_background).into(articleImageView);
         }
 
         TextView sectionTextView = convertView.findViewById(R.id.article_section_text_view);

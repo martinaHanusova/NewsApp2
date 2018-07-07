@@ -100,15 +100,18 @@ public final class QueryUtils {
                 String section = article.optString("sectionName");
                 String url = article.optString("webUrl");
                 String publicationDate = article.getString("webPublicationDate");
-                JSONObject fields = article.optJSONObject("fields");;
-                String imageUrl = fields.getString("thumbnail");
-                JSONArray tags = article.getJSONArray("tags");
+                JSONObject fields = article.optJSONObject("fields");
+                String imageUrl = null;
+                if (fields != null) {
+                    imageUrl = fields.optString("thumbnail");
+                }
+                JSONArray tags = article.optJSONArray("tags");
                 String authorName = null;
                 String authorSurname = null;
                 if (tags.length() > 0) {
-                    JSONObject author = tags.getJSONObject(0);
-                    authorName = author.getString("firstName");
-                    authorSurname = author.getString("lastName");
+                    JSONObject author = tags.optJSONObject(0);
+                    authorName = author.optString("firstName");
+                    authorSurname = author.optString("lastName");
                 }
                 articles.add(new Article(title, url, imageUrl, publicationDate, authorName, authorSurname, section));
                 Log.d(LOG_TAG, articles.get(i).toString());
