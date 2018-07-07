@@ -29,6 +29,7 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
 
     private static final String URL_REQUEST = "http://content.guardianapis.com/search?";
     private static final int ARTICLE_LOADER_ID = 1;
+    private static final String AND_OPERATOR = "%20AND%20";
     private ArticleAdapter articleAdapter;
     private ProgressBar progressBar;
     private TextView messageView;
@@ -74,11 +75,42 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
 
         String numberOfNews = sharedPreferences.getString(getString(R.string.settings_number_of_news_key), getString(R.string.settings_number_of_news_default));
         String orderBy = sharedPreferences.getString(getString(R.string.settings_order_by_key), getString(R.string.settings_order_by_default));
+        Boolean android = sharedPreferences.getBoolean(getString(R.string.settings_theme_android_key), true);
+        Boolean ios = sharedPreferences.getBoolean(getString(R.string.settings_theme_ios_key), false);
+        Boolean phones = sharedPreferences.getBoolean(getString(R.string.settings_theme_phones_key), false);
+        Boolean ai = sharedPreferences.getBoolean(getString(R.string.settings_theme_ai_key), false);
+        Boolean gadgets = sharedPreferences.getBoolean(getString(R.string.settings_theme_gadgets_key), false);
+        Boolean games = sharedPreferences.getBoolean(getString(R.string.settings_theme_games_key), false);
+
+        StringBuilder themes = new StringBuilder();
+        if (android) {
+            themes.append(getString(R.string.settings_theme_android_key) + AND_OPERATOR);
+        }
+        if (ios) {
+            themes.append(getString(R.string.settings_theme_ios_key) + AND_OPERATOR);
+        }
+        if (phones) {
+            themes.append(getString(R.string.settings_theme_phones_key) + AND_OPERATOR);
+        }
+        if (ai) {
+            themes.append(getString(R.string.settings_theme_ai_key) + AND_OPERATOR);
+        }
+        if (gadgets) {
+            themes.append(getString(R.string.settings_theme_gadgets_key) + AND_OPERATOR);
+        }
+        if (games) {
+            themes.append(getString(R.string.settings_theme_games_key) + AND_OPERATOR);
+        }
+
+        if (themes.toString().endsWith(AND_OPERATOR)) {
+            themes.delete(themes.toString().length() - AND_OPERATOR.length(), themes.toString().length());
+            Log.i("ArticleActivity", themes.toString());
+        }
 
         Uri baseUri = Uri.parse(URL_REQUEST);
 
         Uri.Builder uriBuilder = baseUri.buildUpon();
-
+        uriBuilder.appendQueryParameter("q", themes.toString());
         uriBuilder.appendQueryParameter("section", "technology");
         uriBuilder.appendQueryParameter("show-fields", "thumbnail");
         uriBuilder.appendQueryParameter("show-tags", "contributor");

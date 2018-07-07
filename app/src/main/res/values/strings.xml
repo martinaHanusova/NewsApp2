@@ -25,4 +25,18 @@
     <!-- Label for order-by most relevance option [CHAR LIMIT=20] -->
     <string name="settings_order_by_relevance_label">Relevance</string>
     <string name="settings_order_by_relevance_value" translatable="false">relevance</string>
+
+    <string name="settings_theme_android_key">android</string>
+    <string name="settings_theme_android_label">Android</string>
+    <string name="settings_theme_ios_key">ios</string>
+    <string name="settings_theme_ios_label">iOS</string>
+    <string name="settings_theme_phones_key">phones</string>
+    <string name="settings_theme_phones_label">Phones</string>
+    <string name="settings_theme_ai_key">ai</string>
+    <string name="settings_theme_ai_label">Artificial intelligence</string>
+    <string name="settings_theme_gadgets_key">gadgets</string>
+    <string name="settings_theme_gadgets_label">Gadgets</string>
+    <string name="settings_theme_games_key">games</string>
+    <string name="settings_theme_games_label">Games</string>
+
 </resources>
